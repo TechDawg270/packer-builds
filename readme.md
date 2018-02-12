@@ -15,13 +15,13 @@ Windows install - `chocolatey install packer`
 Execute `packer` to run a template:
 
 ```
-packer build .\rabbitmq.json
+packer build -var-file=nginx_template.json nginx_app.json
 ```
 
 #### Debugging
 Either set an environmental variable for `PACKER_LOG=1` or use the `-debug` flag:
 ```
-packer build -debug .\rabbitmq.json
+packer build -debug -var-file=nginx_template.json nginx_app.json
 ```
 
 ## Performance
