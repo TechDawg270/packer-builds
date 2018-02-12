@@ -1,0 +1,34 @@
+{
+  "variables":{
+    "region":"",
+    "environment":"",
+    "project":"",
+    "role":""
+  },
+  "builders":[
+    {
+      "type":"amazon-ebs",
+      "region":"{{user `region`}}",
+      "instance_type":"m5.large",
+      "ami_name":"nginx-ubuntu-{{timestamp}}",
+      "ssh_username": "ubuntu",
+      "user_data_file" : "./scripts/install_nginx.sh",
+      "source_ami_filter": {
+        "filters":{
+          "virtualization-type":"hvm",
+          "name":"ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*",
+          "root-device-type":"ebs"
+        },
+        "owners":[
+          "099720109477"
+        ],
+        "most_recent":true
+      },
+      "tags":{
+        "Environment":"{{user `environment`}}",
+        "Project":"{{user `project`}}",
+        "Role":"{{user `role`}}"
+      }
+    }
+  ]
+}
