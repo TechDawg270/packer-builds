@@ -10,7 +10,7 @@
       "type":"amazon-ebs",
       "region":"{{user `region`}}",
       "instance_type":"m5.large",
-      "ami_name":"nginx-ubuntu-{{timestamp}}",
+      "ami_name":"nginx-app-ubuntu-{{timestamp}}",
       "ssh_username": "ubuntu",
       "user_data_file" : "./scripts/install_nginx.sh",
       "source_ami_filter": {
@@ -27,7 +27,8 @@
       "tags":{
         "Environment":"{{user `environment`}}",
         "Project":"{{user `project`}}",
-        "Role":"{{user `role`}}"
+        "Role":"{{user `role`}}",
+        "Name":"{{user `role`}}-{{timestamp}}"
       }
     }
   ]
